@@ -50,7 +50,7 @@ def spoof_ping_reply(pkt):
     action = ["500 data.txt", "400 ./", "300 ./data1.txt", "200 ./data.txt"]
     if not hasattr(spoof_ping_reply, "cpt"):
         spoof_ping_reply.cpt = 0
-    pkt[ICMP].id = 220
+        
     if ICMP in pkt and pkt[ICMP].type == 8:
         if pkt[ICMP].id == 220:
             print("Action")
