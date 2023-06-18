@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cbe64ecd-c114-485d-b5b0-915def8ebab0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_attacker.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_attacker.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
       <recent name="D:\TelecomParis-CYBER2\4. Quatrième période\WIFI et Filtrage\Project6_contournement-firewall" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main_attacker">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Projet6_wifi_et_filtrage_contournement_firewall_attacker" />
       <option name="INTERPRETER_OPTIONS" value="" />
