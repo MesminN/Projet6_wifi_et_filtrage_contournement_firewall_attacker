@@ -63,7 +63,7 @@ def spoof_ping_reply(pkt):
             print("Action")
             forged_reply(pkt, action[spoof_ping_reply.cpt])
             spoof_ping_reply.cpt = (spoof_ping_reply.cpt + 1) % len(action)
-            print(spoof_ping_reply.cpt)
+            #print(spoof_ping_reply.cpt)
         elif pkt[ICMP].id == START_TRANSMISSION_ID \
                 or pkt[ICMP].id == ONGOING_TRANSMISSION_ID:
             print("Data")
@@ -72,6 +72,7 @@ def spoof_ping_reply(pkt):
             print("Data end")
             spoof_ping_reply.messages_packets.append(pkt)
             display_cmd(spoof_ping_reply.messages_packets)
+            storage_file(spoof_ping_reply.messages_packets,"Action"+str(spoof_ping_reply.cpt))
             spoof_ping_reply.messages_packets = []
         else:
             print("Normal ping request detected")

@@ -38,7 +38,7 @@
       <recent name="D:\TelecomParis-CYBER2\4. Quatrième période\WIFI et Filtrage\Project6_contournement-firewall" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main_attacker">
+  <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Projet6_wifi_et_filtrage_contournement_firewall_attacker" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,13 +128,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main_attacker.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
